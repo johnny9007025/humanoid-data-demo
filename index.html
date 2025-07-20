@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人形機器人數據收集平台 Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 登入頁面 -->
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <div class="login-box">
+                <i class="fas fa-robot login-icon"></i>
+                <h2>人形機器人數據平台</h2>
+                <p>Humanoid Robot Data Platform</p>
+                <form id="login-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" value="demo" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" value="demo" required>
+                    </div>
+                    <button type="submit" class="btn-primary">登入</button>
+                    <p id="login-error" class="error-message"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主應用程式容器 -->
+    <div id="app" class="hidden">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-robot"></i> H-Platform</h3>
+            </div>
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i><span>儀表板</span></a></li>
+                <li><a href="#" class="nav-link" data-page="upload-center"><i class="fas fa-upload"></i><span>上傳中心</span></a></li>
+                <li><a href="#" class="nav-link" data-page="my-uploads"><i class="fas fa-history"></i><span>我的上傳</span></a></li>
+                <li><a href="#" class="nav-link" data-page="rewards-center"><i class="fas fa-gem"></i><span>獎勵中心</span></a></li>
+                <li><a href="#" class="nav-link" data-page="labeling-demo"><i class="fas fa-tag"></i><span>標籤演示</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i><span>登出</span></a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="page-title">儀表板</h1>
+                <div class="user-profile">
+                    <span>歡迎, <span id="welcome-username"></span>!</span>
+                    <div class="user-avatar">D</div>
+                </div>
+            </header>
+
+            <!-- 儀表板頁面 -->
+            <div id="dashboard-page" class="page">
+                <section class="grid-container">
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-video"></i></div>
+                        <div class="card-content">
+                            <h4>總上傳數</h4>
+                            <p id="dashboard-total-uploads">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-coins"></i></div>
+                        <div class="card-content">
+                            <h4>總點數</h4>
+                            <p id="dashboard-points">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="card-content">
+                            <h4>總收益</h4>
+                            <p id="dashboard-earnings">$0.00</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon"><i class="fas fa-medal"></i></div>
+                        <div class="card-content">
+                            <h4>目前等級</h4>
+                            <p id="dashboard-level">Bronze</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="content-section">
+                    <h3>快速動作</h3>
+                    <div id="quick-actions-container" class="quick-actions"></div>
+                </section>
+                <section class="content-section">
+                    <h3>近期活動</h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>檔案名稱</th>
+                                    <th>動作</th>
+                                    <th>上傳日期</th>
+                                    <th>狀態</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-activity-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 上傳中心 -->
+            <div id="upload-center-page" class="page hidden">
+                <section class="content-section">
+                    <h3>1. 選擇動作類型</h3>
+                    <div id="action-selection-container" class="action-selection"></div>
+                </section>
+                <section class="content-section">
+                    <h3>2. 上傳影片檔案</h3>
+                    <div id="upload-area" class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>拖放檔案到此處，或 <span id="file-browser-link">點擊選擇</span></p>
+                        <input type="file" id="file-input" accept="video/mp4,video/avi,video/mov" hidden>
+                        <small>支援格式: MP4, AVI, MOV</small>
+                    </div>
+                    <div id="upload-progress-container" class="hidden">
+                         <div class="file-info">
+                            <span id="upload-filename"></span>
+                            <span id="upload-status-text"></span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progress-bar-fill"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 我的上傳 -->
+            <div id="my-uploads-page" class="page hidden">
+                <section class="content-section">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>檔案名稱</th>
+                                    <th>動作</th>
+                                    <th>上傳日期</th>
+                                    <th>狀態</th>
+                                    <th>點數</th>
+                                    <th>收益</th>
+                                </tr>
+                            </thead>
+                            <tbody id="my-uploads-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 獎勵中心 -->
+            <div id="rewards-center-page" class="page hidden">
+                 <section class="grid-container">
+                     <div class="card">
+                         <h4>點數餘額</h4>
+                         <p id="rewards-points" class="highlight">1250</p>
+                     </div>
+                     <div class="card">
+                         <h4>累計收益 (1點 = 0.1元)</h4>
+                         <p id="rewards-earnings" class="highlight">$125.50</p>
+                     </div>
+                 </section>
+                 <section class="content-section">
+                     <h3>等級系統</h3>
+                     <div class="level-system" id="level-system-container"></div>
+                 </section>
+                 <section class="content-section">
+                     <h3>成就系統</h3>
+                     <div class="achievements-container" id="achievements-container"></div>
+                 </section>
+            </div>
+
+            <!-- 標籤演示 -->
+            <div id="labeling-demo-page" class="page hidden">
+                <div class="labeling-layout">
+                    <div class="labeling-main">
+                        <!-- 更新的影片播放器 -->
+                        <div class="video-player-container">
+                            <video id="demo-video" controls>
+                                <source src="assets/labeling_demo.mp4" type="video/mp4">
+                                您的瀏覽器不支援 Video 標籤。
+                            </video>
+                            <!-- 用於繪製標註的覆蓋層 -->
+                            <div id="annotation-overlay"></div>
+                        </div>
+                
+                        <!-- 時間軸保留，但我們會用 JS 控制它 -->
+                        <div class="timeline-controls">
+                            <div class="timeline-header">
+                                <span id="video-current-time">00:00</span>
+                                <h4>時間軸</h4>
+                                <span id="video-duration">00:00</span>
+                            </div>
+                            <div id="timeline-container" class="timeline">
+                                <div id="timeline-progress" class="timeline-progress" style="width: 0%;"></div>
+                                <div id="timeline-marker" class="timeline-marker" style="left: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 側邊欄保持不變 -->
+                    <div class="labeling-sidebar">
+                        <h4>標籤工具</h4>
+                        <div id="annotation-inspector">
+                            <p class="placeholder-text">在時間軸上點擊或播放影片以查看標註資訊。</p>
+                            <!-- 標註資訊將會動態插入此處 -->
+                        </div>
+                        <hr>
+                        <h5>3D 空間座標 (模擬)</h5>
+                        <div class="coord-mock">
+                            <span>X: --</span>
+                            <span>Y: --</span>
+                            <span>Z: --</span>
+                        </div>
+                        <hr>
+                        <button class="btn-primary" style="width:100%;" onclick="alert('模擬儲存成功！')">儲存標註</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 根據是否需要串接後端，選擇引用其中一個 script -->
+    <!-- <script src="script-frontend-only.js"></script> -->
+    <script src="script.js"></script>
+
+</body>
+</html>
