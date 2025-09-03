@@ -4,9 +4,9 @@
 
 | Specification                | Details                                                |
 | ---------------------------- | ------------------------------------------------------ |
-| **Token Standard**           | ERC-20 (Mantle Network)                                |
+| **Token Standard**           | ERC-20 (Arbitrum One)                                  |
 | **Maximum Supply**           | 1,000,000,000 $OURO (Hard cap, no additional issuance) |
-| **Transaction Confirmation** | \~2 seconds Finality; Gas < $0.002 USD                 |
+| **Transaction Confirmation** | \~1 second Finality; Gas < $0.05 USD                   |
 | **Precision**                | 18 decimals                                            |
 
 ### Core Function Positioning

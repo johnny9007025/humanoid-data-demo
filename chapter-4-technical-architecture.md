@@ -37,7 +37,7 @@ graph TB
     subgraph "Cloud Layer (Cloud Service)"
         I[Kubernetes Cluster]
         J[IPFS + S3 Storage]
-        K[Mantle Network Smart Contract]
+        K[Arbitrum Smart Contract]
         L[Prometheus Monitoring]
     end
     
@@ -167,7 +167,7 @@ graph TB
         subgraph "Data Layer"
             DB[(PostgreSQL<br/>User Data)]
             STORAGE[(S3 + IPFS<br/>Video Storage)]
-            BLOCKCHAIN[Mantle Network Smart Contract]
+            BLOCKCHAIN[Arbitrum Smart Contract]
         end
         subgraph "Monitoring Layer"
             MONITOR[Prometheus]
@@ -258,7 +258,7 @@ sequenceDiagram
 
 ```mermaid
 graph TB
-    subgraph "Mantle Network Blockchain"
+    subgraph "Arbitrum PoS Blockchain"
         subgraph "Core Contract Layer"
             UM[UserManager<br/>UUPS Upgradable]
             DQ[DataQuality<br/>Quality Validation]
@@ -327,12 +327,12 @@ sequenceDiagram
 
 ### 4.4.3 Blockchain Deployment Specifications
 
-| Specification         | Details                    |
-| --------------------- | -------------------------- |
-| **Main Chain**        | Mantle Network             |
-| **Transaction Cost**  | Gas Fee < $0.002 USD       |
-| **Confirmation Time** | \~2 seconds finality       |
-| **TPS Capacity**      | 5,000+ transactions/second |
+| Specification         | Details                     |
+| --------------------- | --------------------------- |
+| **Main Chain**        | Arbitrum One                |
+| **Transaction Cost**  | Gas Fee < $0.05 USD         |
+| **Confirmation Time** | \~1 second finality         |
+| **TPS Capacity**      | 40,000+ transactions/second |
 
 ### 4.4.4 Security Audit and Governance
 
