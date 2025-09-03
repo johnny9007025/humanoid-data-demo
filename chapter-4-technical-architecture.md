@@ -37,7 +37,7 @@ graph TB
     subgraph "Cloud Layer (Cloud Service)"
         I[Kubernetes Cluster]
         J[IPFS + S3 Storage]
-        K[Arbitrum Smart Contract]
+        K[Base Smart Contract]
         L[Prometheus Monitoring]
     end
     
@@ -167,7 +167,7 @@ graph TB
         subgraph "Data Layer"
             DB[(PostgreSQL<br/>User Data)]
             STORAGE[(S3 + IPFS<br/>Video Storage)]
-            BLOCKCHAIN[Arbitrum Smart Contract]
+            BLOCKCHAIN[Base Smart Contract]
         end
         subgraph "Monitoring Layer"
             MONITOR[Prometheus]
@@ -258,7 +258,7 @@ sequenceDiagram
 
 ```mermaid
 graph TB
-    subgraph "Arbitrum PoS Blockchain"
+    subgraph "Base PoS Blockchain"
         subgraph "Core Contract Layer"
             UM[UserManager<br/>UUPS Upgradable]
             DQ[DataQuality<br/>Quality Validation]
@@ -329,10 +329,10 @@ sequenceDiagram
 
 | Specification         | Details                     |
 | --------------------- | --------------------------- |
-| **Main Chain**        | Arbitrum One                |
-| **Transaction Cost**  | Gas Fee < $0.05 USD         |
-| **Confirmation Time** | \~1 second finality         |
-| **TPS Capacity**      | 40,000+ transactions/second |
+| **Main Chain**        | Base One                |
+| **Transaction Cost**  | Gas Fee < $0.005 USD USD         |
+| **Confirmation Time** | ~2 second finality         |
+| **TPS Capacity**      | 1,000+ transactions/second |
 
 ### 4.4.4 Security Audit and Governance
 
@@ -492,6 +492,7 @@ graph TB
     
     style TRANSCODE fill:#e8f5e8
     style COMPRESS fill:#fff3e0
+
     style PEER2 fill:#e1f5fe
 ```
 
