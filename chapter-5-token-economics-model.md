@@ -4,9 +4,9 @@
 
 | Specification                | Details                                                |
 | ---------------------------- | ------------------------------------------------------ |
-| **Token Standard**           | ERC-20 (Arbitrum One)                                  |
+| **Token Standard**           | ERC-20 (Base)                                  |
 | **Maximum Supply**           | 1,000,000,000 $OURO (Hard cap, no additional issuance) |
-| **Transaction Confirmation** | \~1 second Finality; Gas < $0.05 USD                   |
+| **Transaction Confirmation** | \~2 second Finality; Gas < $0.005 USD                   |
 | **Precision**                | 18 decimals                                            |
 
 ### Core Function Positioning
@@ -108,6 +108,7 @@ graph TD
     style J fill:#e3f2fd,stroke:#333,stroke-width:2px
     style C fill:#fff3e0,stroke:#f57f17,stroke-width:3px,stroke-dasharray: 5 5
     style G fill:#e8f5e9,stroke:#333,stroke-width:2px
+
     style H fill:#e8f5e9,stroke:#333,stroke-width:2px
 ```
 
